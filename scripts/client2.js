@@ -37,7 +37,7 @@ var mesh;
 
 // Load GLTF model, add material, and add it to the scene
 const loader = new GLTFLoader().load(
-  "../../assets/testing123fogv3.glb", // comment this line out and un comment the line below to swithc models
+  "../../assets/chocolate-cake.glb", // comment this line out and un comment the line below to swithc models
   //"./assets/gourd_web.glb", //<-- photogrammetery model
   function(gltf) {
     // Scan loaded model for mesh and apply defined material if mesh is present
@@ -48,9 +48,9 @@ const loader = new GLTFLoader().load(
     });
     // set position and scale
     mesh = gltf.scene;
-    mesh.position.set(0, 0, 0);
+    mesh.position.set(1, -1, 1);
     mesh.rotation.set(45, 0, 0);
-    mesh.scale.set(.2, .2, .2); // <-- change this to (1, 1, 1) for photogrammetery model
+    mesh.scale.set(5, 5, 5); // <-- change this to (1, 1, 1) for photogrammetery model
     // Add model to scene
     scene.add(mesh);
   },
@@ -59,6 +59,32 @@ const loader = new GLTFLoader().load(
     console.error(error);
   }
 );
+
+// Load GLTF model, add material, and add it to the scene
+const loader2 = new GLTFLoader().load(
+  "../../assets/chocolate-cake.glb", // comment this line out and un comment the line below to swithc models
+  //"./assets/gourd_web.glb", //<-- photogrammetery model
+  function(gltf) {
+    // Scan loaded model for mesh and apply defined material if mesh is present
+    gltf.scene.traverse(function(child) {
+      if (child.isMesh) {
+        //child.material = newMaterial;
+      }
+    });
+    // set position and scale
+    mesh = gltf.scene;
+    mesh.position.set(-1, 0, 0);
+    mesh.rotation.set(45, 0, 0);
+    mesh.scale.set(2, 2, 2); // <-- change this to (1, 1, 1) for photogrammetery model
+    // Add model to scene
+    scene.add(mesh);
+  },
+  undefined,
+  function(error) {
+    console.error(error);
+  }
+);
+
 
 // Add Orbit Controls
 const controls = new OrbitControls(camera, renderer.domElement);
